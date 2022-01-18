@@ -38,5 +38,7 @@
 * Client caching werkt 
 * Persisted Queries werkt
 * HTTP caching werkt
+* Mogelijkheid eigen cache-control headers te zetten
+* Overlopen metrics om te bepalen wat de beste strategie is
 
 ### Feedback

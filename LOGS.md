@@ -15,18 +15,26 @@
 - [x] Frontend testen met Persisted Queries van Apollo client - backend
 - [x] Kijken hoe http caching kan gebruikt worden met Persisted Queries (GET)
 - [ ] Frontend testen met relay (facebook) ?
-- [ ] Frontend testen met localstorage? niet noodzakelijk?
-- [ ] Meetresultaten bijhouden
-- [ ] GraphCDN testen
-- [ ] Mutations toevoegen aan app en kijken wat het efficiëntste is om het complete plaatje te hebben
+- [x] Meetresultaten bijhouden
+- [x] GraphCDN testen
+- [x] Mutations toevoegen aan app en kijken wat het efficiëntste is om het complete plaatje te hebben **!wip!**
 - [ ] Vergelijking opmaken van de verschillende strategiën
 
 ### Metrics
 
-- Response time in backend
-- Response time tot in de client
-- CPU usage backend?
-- RAM usage backend?
+#### Speed
+-	Hoe snel kan de data worden opgehaald?
+-	Wat voor impact heeft de datasize op het voordeel van caching?
+-	Wat voor impact heeft de nesting tree op het voordeel van caching?
+#### Dev experience
+-	Hoe makkelijk is het te implementeren? 
+-	Voor & nadelen?
+-	Kosten?
+-	Bundle sizes?
+#### Valid / freshnes data
+-	Hoe kan de data fresh gehouden worden, is dit makkelijk op te zetten?
+-	Wat bij Mutations? (CUD)
+
 
 ### Meet strategie
 
@@ -34,104 +42,128 @@
 - Meten op data grootte
 - Meten op rows op top level
 
+
+
 ## Caching mogelijkheden
 
-![](https://i.imgur.com/chwlbvw.png)
+| **Caching GraphQL**                                            |                                                        |                    |
+| -------------------------------------------------------------- | ------------------------------------------------------ | ------------------ |
+| **Server side**                                                | **CDN**                                                | **Client side**    |
+| → Apollo directives caching + Persisted queries = HTTP Caching | → GraphCDN                                             | → Apollo Client v3 |
+| → Redis response caching                                       | → HTTP caching with self written cache control headers | → Relay            |
+|                                                                |                                                        | → URQL             |
 
 ## Logs
 
 ### Backend
 
-#### Bevindingen
+#### Apollo Server - Directives caching
 
-##### Node.js - Apollo Sever
+##### Bevindingen
 
-| Field, Type caching Apollo Server [**type gql**] | Field, Type caching Apollo Server [plain] | Redis cache |
-| ------------------------------------------------ | ----------------------------------------- | ----------- |
-| Same as with apollo-server-express               | Found how to implement, check code 🔥     | Done        |
+- Code-first approach bestaat nog niet met Apollo Server, enkel de SQL-first approach. => found solution, het kan wel.
+- Apollo garphql express is een express versie van de apollo gql server package, type-graphql zorgt dat een schema wordt gemaakt volgens classes, hierdoor is het met type-graphql lastiger directives zoals bv max age toe te voegen.
 
-##### Algemeen
+###### Postitief
+
+###### Negatief
+
+- [solved : no reason] Database is zeer traag in relation queries, 10gb versie iets sneller maar niet superveel, data komt wel door via graphql maar toch timeout error ook
+- type-graphql voorziet niet bepaald een out of the box aanpak om cahcecontrol directive te plaatsen, de voorbeeld repo is zeer onduidelijk: https://github.com/MichalLytek/type-graphql/tree/master/examples/apollo-cache de source van directives etc is deep nested. **UPDATE => https://typegraphql.com/docs/directives.html** goed bekijken
+- **Database**: heel traag door de grote data, opgelost door indexen toe te voegen op de fk die gebruikt worden in resolvers. Nu veel sneller.
+- Je kan **geen** extra cache hints plaatsen dan maxAge & Scope, lastig dus bij mutations en freshnes. Dit kan echter wel met het doorgeven van het res object en zelf cache-control headers te schrijven.
+
+#### Redis cache
+
+##### Bevindingen
+
+- Redis cache heeft bij de kleine data range niet veel impact en bij het serializeren van de cahce zijn er problemen met **date** type en graphql
+
+###### Postitief
+
+###### Negatief
+
+- **Redis** caching in **GQL** wordt al snel heel complex bij geneste data, zoals bij een delete of mutation, enkel als het id in de key naam zit kan je deze eventueel flushen maar vanaf je bvb een post delete, die in een posts list gecached is van een user, kan je deze niet wissen. Je zou al per post dan moeten gaan cachen en zelfs dan bevat nie elke post persé de gevraagde data. Ik zou redis cache enkel aan raden bij statiche data die niet veel veranderd.
+
+#### Algemeen
 
 - Code-first approach bestaat nog niet met Apollo Server, enkel de SQL-first approach.
 - Code-first might work met In-memory cache setup, aangezien dit enkel de responses cached.
 - Memcached/Redis setup is een optie.
 - Apollo garphql express is een express versie van de apollo gql server package, type-graphql zorgt dat een schema wordt gemaakt volgs classes, hierdoor is het met type-graphql lastiger directives zoals bv max age toe te voegen. In een string file zonder type-graphql gaat dit handiger
 - **Redis cache** heeft bij de kleine data range niet veel impact en bij het serializeren van de cahce zijn er problemen met date type en graphql
-
-##### Positief
-
 - Na lang zoeken de resolve field onder de knie gekregen dankzij deze bron: https://frontendmasters.com/courses/advanced-graphql/nested-resolvers-solution/
-
-##### Negatief
-
 - [solved : no reason] Database is zeer traag in relation queries, 10gb versie iets sneller maar niet superveel, data komt wel door via graphql maar toch timeout error ook
 - type-graphql voorziet niet bepaald een out of the box aanpak om cahcecontrol directive te plaatsen, de voorbeeld repo is zeer onduidelijk: https://github.com/MichalLytek/type-graphql/tree/master/examples/apollo-cache de source van directives etc is deep nested. **UPDATE => https://typegraphql.com/docs/directives.html** goed bekijken
 - Bij **Redis** kan je enkel je database response gaan cachen, niet de gql response aangezien elke request query van een gebruiker anders kan zijn.
 - **Database**: heel traag door de grote data, opgelost door indexen toe te voegen op de fk die gebruikt worden in resolvers. Nu veel sneller.
 - **Redis** wordt al snel heel complex bij geneste data, zoals bij een delete of mutation, enkel als het id in de key naam zit kan je deze eventueel flushen maar vanaf je bvb een post delete, die in een posts list gecached is van een user, kan je deze niet wissen. Je zou al per post dan moeten gaan cachen en zelfs dan bevat nie elke post persé de gevraagde data. Ik zou redis cache enkel aan raden bij statiche data die niet veel veranderd.
-
-#### Bronnen
+- **Apollo Server**, je kan geen extra cache hints plaatsen dan maxAge & Scope, lastig dus bij mutations en freshnes. Dit kan echter wel met het doorgeven van het res object en zelf cache-control headers te schrijven.
 
 ### Frontend
 
-#### Bevindingen
+#### Apollo Client v3 - Client InMemory cache
 
-##### Algemeen
+##### Bevindingen
 
-##### Positief
+- Apollo client is makkelijk op te zetten in react
+- Opletten dat cache niet te veel geheugen inneemt hiermee
+- 4 options kwa cache control, zeer makkelijk in gebruik
+- **Juistheid van data**: er moet aandachtig gekeken worden naar de fetch policy bij mutations, soms kan je erop vertrouwen dat de clien het juist voor jou doet, maar bij deletes moet je zelf de cache updaten en bij een create in sommige gevallen bij geneste data een refetch gaan doen.
+- Cached volgens \_\_typename & id => houd per geneste data ook bij & merged wanneer er nieuwe bij komt
+- In apollo client moet de query string direct mee gegeven worden aan gql, en niet eerst via variabele, anders werkt de cache niet
+- Bij een **mutation** moet het return \_\_typename & id aanwegzig zijn om de client cache te updaten
 
-##### Apollo client
+###### Positief
 
 - Zeer snel
 - Makkelijk op te zetten
-- Handig met useQuery method
-- Cached volgens \_\_typename & id => houd per geneste data ook bij & merged wanneer er nieuwe bij komt
-- Opletten dat cache niet te veel geheugen inneemt hiermee
-- 4 options kwa cache control, zeer makkelijk in gebruik
-- **Juistheid van data** er moet aandachtig gekeken worden naar de fetch policy bij mutations, soms kan je erop vertrouwen dat de clien het juist voor jou doet, maar bij deletes moet je zelf de cache updaten en bij een create in sommige gevallen bij geneste data een refetch gaan doen. 
+- Handig met useQuery, useLazyQuery & useMutation method, hooks in general.
+- Goed dev tool in chrome beschikbaar
+- Bij de hooks om data te fetchen heb je direct een error, loading & data destructuring die het heel developper friendly maken.
+- Wanneer de cache gebruikt word zie je je data kwasie direct zonder zelf de loader te zien.
 
-##### Apollo client persisted queries
+###### Negatief
+
+- Niet atlijd duidelijke documentatie, je moet vaak dingen van op 2 verschillende locaties samen gooien.
+
+#### Apollo Client v3 - Persisted Queries
+
+##### Bevindingen
 
 - Makkelijk op te zetten
 - Controleer baar in network tab
 - Stuurt niet altijd een GET req ? Soms bij reload enkel posts?
 - Werkend gekregen met persisted queries, directive toevoegen werkt. default moet hoger of 0 zijn in index.js server file
 
-##### Apollo client
+###### Positief
 
-- Apollo client is makkelijk op te zetten in react
-- In apollo client moet de query string direct mee gegeven worden aan gql, en niet eerst via variabele, anders werkt de cache niet
-- Goed dev tool in chrome beschikbaar
-- Wanneer de cache gebruikt word zie je je data kwasie direct zonder zelf de loader te zien.
-- Bij de hooks om data te fetchen heb je direct een error, loading & data destructuring die het heel developper friendly maken.
-- Bij een mutation moet het return \_\_typename & id aanwegzig zijn om de client cache te updaten
 
-##### Negatief
+###### Negatief
 
-##### Apollo client
 
-- Niet atlijd duidelijke documentatie, je moet vaak dingen van op 2 verschillende locaties samen gooien.
-
-#### Bronnen
 
 ### CDN
 
-#### Bevindingen
+#### GraphCDN
 
-##### Algemeen
+##### Bevindingen
 
-- Opzet baar zonder graphcdn, persisted queries maken het mogelijk met GET te werken en deze op eender welke cdn te gaan cachen.
-- GraphCDN: portforwarded server met ip werkt niet, moet gehost worden op een dn. Error afkomstig van cloudflare.
+- Portforwarded server met ip werkt niet, moet gehost worden op een dn. Error afkomstig van cloudflare.
+- Er is een dev omgeving mogelijk om bovenstaand probleem op te lossen.
 
-##### Positief
+###### Positief
 
 - Snel
 - Makkelijk op te zetten
+- Analytics out of the box
 
-##### Negatief
+###### Negatief
 
-- Site wat buggy? Error count klopt maar geen errors getoond
+- Site wat buggy? Error count klopt maar geen errors getoond.
 
-#### Bronnen
 
-### DB
+#### Algemeen
+
+- Opzet baar zonder GraphCDN, persisted queries maken het mogelijk met GET te werken en deze op eender welke cdn te gaan cachen.
+
