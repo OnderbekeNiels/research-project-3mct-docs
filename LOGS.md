@@ -68,6 +68,7 @@
 - type-graphql voorziet niet bepaald een out of the box aanpak om cahcecontrol directive te plaatsen, de voorbeeld repo is zeer onduidelijk: https://github.com/MichalLytek/type-graphql/tree/master/examples/apollo-cache de source van directives etc is deep nested. **UPDATE => https://typegraphql.com/docs/directives.html** goed bekijken
 - Bij **Redis** kan je enkel je database response gaan cachen, niet de gql response aangezien elke request query van een gebruiker anders kan zijn.
 - **Database**: heel traag door de grote data, opgelost door indexen toe te voegen op de fk die gebruikt worden in resolvers. Nu veel sneller.
+- **Redis** wordt al snel heel complex bij geneste data, zoals bij een delete of mutation, enkel als het id in de key naam zit kan je deze eventueel flushen maar vanaf je bvb een post delete, die in een posts list gecached is van een user, kan je deze niet wissen. Je zou al per post dan moeten gaan cachen en zelfs dan bevat nie elke post persé de gevraagde data. Ik zou redis cache enkel aan raden bij statiche data die niet veel veranderd.
 
 #### Bronnen
 
