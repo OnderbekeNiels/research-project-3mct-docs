@@ -41,4 +41,6 @@
 * Mogelijkheid eigen cache-control headers te zetten
 * Overlopen metrics om te bepalen wat de beste strategie is
 
+* **Life long learning**: joined discord GraphQl & Redis + subscribed on Apollo YT channel
+
 ### Feedback
