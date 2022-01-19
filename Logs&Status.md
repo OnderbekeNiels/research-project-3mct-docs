@@ -158,12 +158,15 @@
 
 - Portforwarded server met ip werkt niet, moet gehost worden op een dn. Error afkomstig van cloudflare.
 - Er is een dev omgeving mogelijk om bovenstaand probleem op te lossen.
+- Wanneer je op een type caching plaatst, dan zal een query die die specifieke type bevat ook cachen, bv UsersAll waar je ook de posts ophaald. Iets om rekening mee te houden. => je kan ook puur op query's caching plaatsen, **problem solved**
 
 ###### Positief
 
 - Snel
 - Makkelijk op te zetten
 - Analytics out of the box
+- Je kan serverside http caching combineren
+- Auto invalidation wanneer je de juiste response stuurt na een mutation => werkt bij Creates and updates, kan manueel gedaan worden met **purging api** ! **zeer handig**
 
 ###### Negatief
 
