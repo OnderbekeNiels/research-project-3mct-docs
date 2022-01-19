@@ -17,7 +17,7 @@
 - [x] Meetresultaten bijhouden
 - [x] GraphCDN testen
 - [x] Mutations toevoegen aan app en kijken wat het efficiëntste is om het complete plaatje te hebben **!wip!**
-- [ ] CUD actions bekijken kwa dev exprience Persisted Queries
+- [x] CUD actions bekijken kwa dev exprience Persisted Queries
 - [ ] CUD actions bekijken kwa dev exprience GraphCDN
 - [ ] Vergelijking opmaken van de verschillende strategiën.
 - [ ] Bekijken of hetzelfde kan met URQL en hoe dat verhoud met Apollo Client
@@ -146,6 +146,8 @@
 
 ###### Negatief
 
+- Wanneer je "stale-while-revalidate" gebruikt zal je nieuwe data pas gebruikt worden na 2x reloaden, dit omdat de revalidate response opgeslagen wordt in de cache en de volgende keer pas getoont zal worden, je zit dus een stapje achter
+- Niet veel controle over mutations die gebreuren. Om voor fresh content te zorgen moet er atlijd een request naar backend gestuurd worden met bvb "no-cache" of "stale-while-revalidate" headers, dit is meer voor static content die niet veel veranderd
 
 
 ### CDN
