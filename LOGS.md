@@ -18,7 +18,8 @@
 - [x] Meetresultaten bijhouden
 - [x] GraphCDN testen
 - [x] Mutations toevoegen aan app en kijken wat het efficiëntste is om het complete plaatje te hebben **!wip!**
-- [ ] Vergelijking opmaken van de verschillende strategiën
+- [ ] CUD actions bekijken kwa dev exprience GraphCDN
+- [ ] Vergelijking opmaken van de verschillende strategiën.
 
 ### Metrics
 

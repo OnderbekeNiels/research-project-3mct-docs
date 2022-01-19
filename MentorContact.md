@@ -28,10 +28,22 @@
 
 ## Week 01 - 19/01/2022
 
+### Volgorde persenteren
+
+1. Docs repository tonen en toevoegen
+2. Logger Firebase traag dus eigen implementatie om te meten
+3. Directives + Persisted queries
+4. Apollo Client InMemory Cache
+5. GraphCDN
+6. CUD actions bedenkingen (redis, ...)
+7. Meetresultaten
+8. Vragen
+
 ### Vragen
 
 * Moet ik een normale cdn opzetten om dit te tonen of is het aantonen dat ik http caching heb kunnen implementeren voldoende? Als ik dan vb ook kan aantonen dat de s-headers configureerbaar zijn? 
 * Ik heb nu vooral gekeken hoe ik deze cachings kan opzetten, maar nog niet hoe ik ze efficient kan gebruiken we input/output, moet ik dit voor elke gevonden manier voor enkel voor de manieren die ik zou aanraden als dev?
+* Is het testen van **Relay** nog revelant aangezien deze vrij complex is en ook een client uiteindelijk, waarbij de memory speed de factor is bij het inladen? Ook bestaat er **URQL** is een lichtere bundle size heeft en de core dingen van apollo client kan zoals een normalized memory cache.
 
 ### Need to mention
 
@@ -40,7 +52,11 @@
 * HTTP caching werkt
 * Mogelijkheid eigen cache-control headers te zetten
 * Overlopen metrics om te bepalen wat de beste strategie is
+* Tonen GraphCDN dashboard
+* Met de data die ik nu al heb, kan ik al een antwoord hebben op mijn onderzoeksvraag. Alleen is dit geen vanzelf sprekend antwoord omdat het afhangt van de data.
 
 * **Life long learning**: joined discord GraphQl & Redis + subscribed on Apollo YT channel
 
 ### Feedback
+
+*
