@@ -14,12 +14,17 @@
 - [x] Frontend testen met Apollo client en cache mogelijkheden
 - [x] Frontend testen met Persisted Queries van Apollo client - backend
 - [x] Kijken hoe http caching kan gebruikt worden met Persisted Queries (GET)
-- [ ] Frontend testen met relay (facebook) ?
 - [x] Meetresultaten bijhouden
 - [x] GraphCDN testen
 - [x] Mutations toevoegen aan app en kijken wat het efficiëntste is om het complete plaatje te hebben **!wip!**
+- [ ] CUD actions bekijken kwa dev exprience Persisted Queries
 - [ ] CUD actions bekijken kwa dev exprience GraphCDN
 - [ ] Vergelijking opmaken van de verschillende strategiën.
+- [ ] Bekijken of hetzelfde kan met URQL en hoe dat verhoud met Apollo Client
+- [ ] Grafiek opmaken zoals versus een beetje met aanbevelingen cache strategie per nesting en data size
+- [ ] Grafiek met % sneller maken
+- [ ] Medium blog post maken en reageren op stackoverflow
+- [ ] Stappen setup beschrijven in eindoordeel (vb directive maken, dit aanzetten etc...)
 
 ### Metrics
 
@@ -34,7 +39,7 @@
 -	Bundle sizes?
 #### Valid / freshnes data
 -	Hoe kan de data fresh gehouden worden, is dit makkelijk op te zetten?
--	Wat bij Mutations? (CUD)
+-	Wat bij Mutations? (CUD) (Cache busting)
 
 
 ### Meet strategie
@@ -42,7 +47,6 @@
 - Meten op level van nesting (max 4?)
 - Meten op data grootte
 - Meten op rows op top level
-
 
 
 ## Caching mogelijkheden
