@@ -47,7 +47,7 @@
 
 ### Need to mention
 
-* Client caching werkt 
+* Client caching werkt
 * Persisted Queries werkt
 * HTTP caching werkt
 * Mogelijkheid eigen cache-control headers te zetten
@@ -59,4 +59,9 @@
 
 ### Feedback
 
-*
+* Relay skippen, URQL nog eens bekijken omdat deze een veel kleinere bundle size heeft
+* Afweging bundle size met voordeel in cache snelheid
+* Grafiek opmaken zoals versus een beetje met aanbevelingen cache strategie per nesting en data size
+* Grafiek met % sneller maken
+* Medium blog post maken en reageren op stackoverflow
+* Stappen setup beschrijven in eindoordeel (vb directive maken, dit aanzetten etc...)
