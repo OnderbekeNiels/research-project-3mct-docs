@@ -18,11 +18,11 @@
 - [x] GraphCDN testen
 - [x] Mutations toevoegen aan app en kijken wat het efficiëntste is om het complete plaatje te hebben **!wip!**
 - [x] CUD actions bekijken kwa dev exprience Persisted Queries
-- [ ] CUD actions bekijken kwa dev exprience GraphCDN
+- [x] CUD actions bekijken kwa dev exprience GraphCDN
+- [x] Bekijken of hetzelfde kan met URQL en hoe dat verhoud met Apollo Client
 - [ ] Vergelijking opmaken van de verschillende strategiën.
-- [ ] Bekijken of hetzelfde kan met URQL en hoe dat verhoud met Apollo Client
-- [ ] Grafiek opmaken zoals versus een beetje met aanbevelingen cache strategie per nesting en data size
-- [ ] Grafiek met % sneller maken
+- [x] Grafiek opmaken zoals versus een beetje met aanbevelingen cache strategie per nesting en data size
+- [x] Grafiek met % sneller maken
 - [ ] Medium blog post maken en reageren op stackoverflow
 - [ ] Stappen setup beschrijven in eindoordeel (vb directive maken, dit aanzetten etc...)
 
@@ -47,7 +47,6 @@
 - Meten op level van nesting (max 4?)
 - Meten op data grootte
 - Meten op rows op top level
-
 
 ## Caching mogelijkheden
 
