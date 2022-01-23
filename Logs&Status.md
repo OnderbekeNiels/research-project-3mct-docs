@@ -20,27 +20,36 @@
 - [x] CUD actions bekijken kwa dev exprience Persisted Queries
 - [x] CUD actions bekijken kwa dev exprience GraphCDN
 - [x] Bekijken of hetzelfde kan met URQL en hoe dat verhoud met Apollo Client
-- [ ] Vergelijking opmaken van de verschillende strategiën.
+- [x] Vergelijking opmaken van de verschillende strategiën.
 - [x] Grafiek opmaken zoals versus een beetje met aanbevelingen cache strategie per nesting en data size
 - [x] Grafiek met % sneller maken
-- [ ] Medium blog post maken en reageren op stackoverflow
+- [ ] Medium blog post maken
+- [ ] Reageren op stackoverflow
 - [ ] Stappen setup beschrijven in eindoordeel (vb directive maken, dit aanzetten etc...)
+- [ ] Demo voorbereiden in best gevonden strategiën en goed testen
+- [ ] Installatie handleiding
+- [ ] Gebruikershandleiding
+- [ ] Bronnenlijst
 
 ### Metrics
 
 #### Speed
--	Hoe snel kan de data worden opgehaald?
--	Wat voor impact heeft de datasize op het voordeel van caching?
--	Wat voor impact heeft de nesting tree op het voordeel van caching?
-#### Dev experience
--	Hoe makkelijk is het te implementeren? 
--	Voor & nadelen?
--	Kosten?
--	Bundle sizes?
-#### Valid / freshnes data
--	Hoe kan de data fresh gehouden worden, is dit makkelijk op te zetten?
--	Wat bij Mutations? (CUD) (Cache busting)
 
+- Hoe snel kan de data worden opgehaald?
+- Wat voor impact heeft de datasize op het voordeel van caching?
+- Wat voor impact heeft de nesting tree op het voordeel van caching?
+
+#### Dev experience
+
+- Hoe makkelijk is het te implementeren?
+- Voor & nadelen?
+- Kosten?
+- Bundle sizes?
+
+#### Valid / freshnes data
+
+- Hoe kan de data fresh gehouden worden, is dit makkelijk op te zetten?
+- Wat bij Mutations? (CUD) (Cache busting)
 
 ### Meet strategie
 
@@ -142,12 +151,10 @@
 
 ###### Positief
 
-
 ###### Negatief
 
 - Wanneer je "stale-while-revalidate" gebruikt zal je nieuwe data pas gebruikt worden na 2x reloaden, dit omdat de revalidate response opgeslagen wordt in de cache en de volgende keer pas getoont zal worden, je zit dus een stapje achter
 - Niet veel controle over mutations die gebreuren. Om voor fresh content te zorgen moet er atlijd een request naar backend gestuurd worden met bvb "no-cache" of "stale-while-revalidate" headers, dit is meer voor static content die niet veel veranderd
-
 
 ### CDN
 
@@ -171,8 +178,6 @@
 
 - Site wat buggy? Error count klopt maar geen errors getoond.
 
-
 #### Algemeen
 
 - Opzet baar zonder GraphCDN, persisted queries maken het mogelijk met GET te werken en deze op eender welke cdn te gaan cachen.
-
