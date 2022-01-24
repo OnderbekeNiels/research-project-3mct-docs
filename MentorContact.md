@@ -26,7 +26,7 @@
 * Gebruik maken van algemene logger (vb. firebase performance logger) om data te verzamelen  
 
 
-## Week 01 - 19/01/2022
+## Week 02 - 19/01/2022
 
 ### Volgorde persenteren
 
@@ -65,3 +65,20 @@
 * Grafiek met % sneller maken
 * Medium blog post maken en reageren op stackoverflow
 * Stappen setup beschrijven in eindoordeel (vb directive maken, dit aanzetten etc...)
+
+## Week 03 - 26/01/2022
+
+### Vragen
+
+* Is mijn vooropgestelde demo goed of wil je nog andere dingen aanbod zien komen tijdens de presentatie?
+* Voor de demo van graphCDN, moet ik de purge API demonsteren of is gewoon de code eens tonen voldoende? Want anders moet ik deze online plaatsen, wat geen probleem is voor de duidelijkheid.
+* Is een demo in dezelfde stategieën goed of mag er wat meer dynamiek zijn? zoals delete, andere pagina's etc? Of zet ik deze gewoon online voor de leerkrachten?
+* Indienen? Moet ik van elke strategie een branch zip indienen of enkel de beste die ik gevonden had? Aangezien ik elke stratie op een andere branch behandelde?
+
+### Need to mention
+
+* Urql mesurements en bundle results 
+
+* **Life long learning**: wrote medium blog post https://medium.com/@niels.onderbeke.no/research-project-which-is-the-best-caching-strategy-with-graphql-for-a-big-relational-database-56fedb773b97 
+
+### Feedback
