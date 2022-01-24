@@ -23,7 +23,7 @@
 - [x] Vergelijking opmaken van de verschillende strategiën.
 - [x] Grafiek opmaken zoals versus een beetje met aanbevelingen cache strategie per nesting en data size
 - [x] Grafiek met % sneller maken
-- [ ] Medium blog post maken
+- [x] Medium blog post maken
 - [ ] Reageren op stackoverflow
 - [ ] Stappen setup beschrijven in eindoordeel (vb directive maken, dit aanzetten etc...)
 - [ ] Demo voorbereiden in best gevonden strategiën en goed testen
