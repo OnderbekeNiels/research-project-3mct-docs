@@ -81,6 +81,7 @@
 ### Need to mention
 
 - Urql mesurements en bundle results
+- Dockerization
 - Blogpost & stackoverflow post
 - To do's last week
 
