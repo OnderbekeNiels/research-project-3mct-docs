@@ -24,7 +24,9 @@
 - [x] Grafiek opmaken zoals versus een beetje met aanbevelingen cache strategie per nesting en data size
 - [x] Grafiek met % sneller maken
 - [x] Medium blog post maken
-- [ ] Reageren op stackoverflow
+- [x] Dockerizen branches
+- [x] Reageren op stackoverflow
+- [ ] Impact client side caching on cpu checken voor eens te vermelden tijdens presentatie
 - [ ] Stappen setup beschrijven in eindoordeel (vb directive maken, dit aanzetten etc...)
 - [ ] Demo voorbereiden in best gevonden strategiën en goed testen
 - [ ] Installatie handleiding
