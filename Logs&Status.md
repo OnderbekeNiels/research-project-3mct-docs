@@ -26,12 +26,13 @@
 - [x] Medium blog post maken
 - [x] Dockerizen branches
 - [x] Reageren op stackoverflow
+- [x] Installatie handleiding
+- [x] Bronnenlijst
+- [ ] Pros en cons nog eens goed bekijken en noteren
+- [x] Gebruikershandleiding
 - [ ] Impact client side caching on cpu checken voor eens te vermelden tijdens presentatie
-- [ ] Stappen setup beschrijven in eindoordeel (vb directive maken, dit aanzetten etc...)
 - [ ] Demo voorbereiden in best gevonden strategiën en goed testen
-- [ ] Installatie handleiding
-- [ ] Gebruikershandleiding
-- [ ] Bronnenlijst
+- [x] Determineer tabel maken voor strategiën
 
 ### Metrics
 
