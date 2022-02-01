@@ -105,3 +105,13 @@ bronnen: docs graph cdn & video met Max Stoiber (co-founder)
 ### Potential questions
 
 - hoe zit het met de time passes in de xd rond automatic
+- kan je de in memory data persisten met apollo client? ja, https://www.apollographql.com/docs/react/caching/advanced-topics/
+
+### Main sources
+
+- MDN docs https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching
+- Apollo GraphQL video with github dev as speaker 
+- Ben Awad his video's about GraphQL caching
+- Docs Apollo 
+- Docs GraphCDN
+- Apollo Cache GitHub speaker https://www.youtube.com/watch?v=CV3puKM_G14&t=498s 

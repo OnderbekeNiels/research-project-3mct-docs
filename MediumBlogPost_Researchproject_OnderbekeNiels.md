@@ -302,7 +302,7 @@ GraphCDN provides a CLI so you can proxy requests to your local develop environm
 
 GraphCDN is free up to 5 million requests per month. So, if you want to use GraphCDN in your production environment, the best option is to define your needs & compare them with the plans GraphCDN provides.
 
-To implement cache busting / invalidate cached data after mutations, GraphCDN provides auto updates to renew your cache when an update mutation happens (if the updated data is included)! This is just like how Apollo Client handles updates. [https://docs.graphcdn.io/docs/automatic-cache-invalidation-via-mutations](https://docs.graphcdn.io/docs/automatic-cache-invalidation-via-mutations) .
+To implement cache busting / invalidate cached data after mutations, GraphCDN provides auto invalidation to renew your cache when an update mutation happens (if the updated data is included)!
 
 They also provide a Purging API [https://docs.graphcdn.io/docs/purging-api](https://docs.graphcdn.io/docs/purging-api) . This is a secured API that automatically gets created for your schema. It enables you to send requests from your backend server to purge caches that contain a certain Type, Field or Operation name. This is super handy to keep your data fresh in the cache! I would consider this a huge plus because you can relatively easy keep control over your caching strategy! Important to mention, because this is a public API that clears your real cache, you can’t really test it with your development setup using the CLI.
 
